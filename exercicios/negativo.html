@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Processamento Digital de Imagens</title>
+  <link rel="stylesheet" href = "igordcn.github.io/css/estilo.css">
+</head>
+<body>
+<h1>Negativo</h1>
+<h2>Descrição do Problema</h2>
+<p>O problema consiste na aplicação de um efeito de negativo numa região da imagem escolhida pelo usuário. 
+</p>
+<h2>Código</h2>
+<p>
+<pre>
+#include &ltiostream&gt
+#include &ltopencv2/opencv.hpp&gt
+
+using namespace std;
+using namespace cv;
+bool validarponto(int px, int py, int imgx, int imgy);
+void ajuste(int& p1, int& p2);
+
+int main(int argc, char** argv){
+
+    Mat imagem;
+    int p1x, p1y, p2x, p2y, imgtx, imgty;
+
+    imagem = imread("biel.png",CV_LOAD_IMAGE_GRAYSCALE);
+    if(!imagem.data){
+        cout << "Imagem não pode ser aberta" << endl;
+    }
+    imgtx = imagem.rows;
+    imgty = imagem.cols;
+    do{
+        cout << "Primeiro ponto(x,y):" << endl;
+        cin >> p1x;
+        cin >> p1y;
+    }while(validarponto(p1x,p1y,imgtx,imgty));
+    
+    do{
+        cout << "Segundo ponto(x,y):" << endl;
+        cin >> p2x;
+        cin >> p2y;
+    }while(validarponto(p2x,p2y,imgtx,imgty)); 
+
+    namedWindow("window",WINDOW_AUTOSIZE);
+    imshow("window",imagem);
+    waitKey();
+    
+    ajuste(p1x,p2x);
+    ajuste(p1y,p2y);
+
+    for(int i = p1x; i <= p2x; i++){
+        for(int j = p1y; j <= p2y; j++){
+            imagem.at<uchar>(i,j) = 255-imagem.at<uchar>(i,j);
+        }
+    }
+    
+    imshow("window", imagem);
+    waitKey();
+
+    return 0;  
+}
+
+bool validarponto(int px, int py, int imgx, int imgy){
+    if((px >= imgx && px < 0) || (py >= imgy && py < 0)){
+        cout << "Ponto invalido" << endl;
+        return true;
+    }else{
+        return false;
+    }
+}
+
+void ajuste(int& p1, int& p2){
+    if(p1 > p2){
+        int troca;
+        troca = p1;
+        p1 = p2;
+        p2 = troca;
+    }
+}
+</pre>
+</p>
+<h2>Descrição do Programa</h2>
+<p>O programa começa com a leitura de uma imagem predefinida em tons de cinza. Após isso, é pedido o usuário que digite as coordenada dos dois pontos que vão delimitar a região a qual será aplicado o negativo. Se o usuário fornecer uma coodenada errada(fora dos limites da imagem), o programa pedirá, novamente, pelas coordenadas. Depois disso, a imagem em tons de cinza é mostrada numa pequena janela. Após o usuário apertar uma tecla, a região da delimitada pelo usuário aparacerá em negativo. E após apertar, novamente, um botão, a aplicação se encerra.</p> 
+<h2>Resultado</h2>
+<figure id="original">
+   <img src="/home/igor/Documentos/PDI/Site/biel.png">
+   <figcaption>biel.png</figcaption>
+</figure>
+<figure id="resultado">
+   <img src="/home/igor/Documentos/PDI/Site/regions.png">
+   <figcaption>regions.png</figcaption>
+</figure>
+<p>Para a obtenção da figura acima, foram usadas como entradas as coordenadas de dois pontos:(1,1) e (200,100).</p>
+</body>
+</html>
