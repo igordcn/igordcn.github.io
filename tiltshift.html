@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Processamento Digital de Imagens</title>
+  <link rel="stylesheet" href = "igordcn.github.io/css/estilo.css">
+</head>
+<body>
+<h1>Tilt-shift</h1>
+<h2>Descrição do Problema</h2>
+<p>Aplicar o tiltshift em uma imagem e poder controlar a posição e a altura da região em foco e a transição entre a região borrada e em foco.    
+</p>
+<h2>Código</h2>
+<p>
+<pre>
+#include <iostream>
+#include <opencv2/opencv.hpp>
+#include <cmath>
+
+using namespace cv;
+using namespace std;
+
+double altura, posicao = 0, decaimento=1;
+int height = 0, width = 0;
+
+
+int altura_slider = 0;
+int altura_slider_max;
+
+int decai_slider = 0;
+int decai_slider_max = 10;
+
+int pos_slider = 0;
+int pos_slider_max = 255;
+
+Mat image, imageB, blended;
+double alfa; 
+
+char TrackbarName[50];
+
+void on_trackbar_height(int, void*){
+// blended.convertTo(blended, CV_32FC3);
+ altura = (double)altura_slider;
+ for(int i = 0; i &lt height; i++){
+   alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
+   cout << "Alfa : " <&lt alfa << " ";
+   for(int j = 0; j &lt 3*width; j++){
+     blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
+   }
+ }
+ cout <&lt endl;
+ cout << "Vou mostrar na tela" <&lt endl;
+ //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
+ //blended.convertTo(blended, CV_8UC3);
+ imshow("tela", blended);
+}
+
+void on_trackbar_decaimento(int, void*){
+  // blended.convertTo(blended, CV_32FC3);
+ decaimento = (double)decai_slider + 1;
+ for(int i = 0; i &lt height; i++){
+   alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
+   cout << "Alfa : " <&lt alfa << " ";
+   for(int j = 0; j &lt 3*width; j++){
+     blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
+   }
+ }
+ cout <&lt endl;
+ cout << "Vou mostrar na tela" <&lt endl;
+ //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
+ //blended.convertTo(blended, CV_8UC3);
+ imshow("tela", blended);
+}
+
+void on_trackbar_posicao(int, void*){
+  // blended.convertTo(blended, CV_32FC3);
+ posicao = (double)pos_slider - 127;
+ for(int i = 0; i &lt height; i++){
+   alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
+   cout << "Alfa : " <&lt alfa << " ";
+   for(int j = 0; j &lt 3*width; j++){
+     blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
+   }
+ }
+ cout <&lt endl;
+ cout << "Vou mostrar na tela" <&lt endl;
+ //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
+ //blended.convertTo(blended, CV_8UC3);
+ imshow("tela", blended);
+}
+
+
+int main(int argvc, char** argv){
+  image = imread("blend2.jpg");
+  if(!image.data){
+    cout << "Imagem não carregou corretamante/n";
+  }
+  height = image.size().height;
+  width = image.size().width;
+  cout << "Height: " <&lt height << " e width: " <&lt width <&lt endl;
+  float media[] = {1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9};
+  image.copyTo(imageB);
+  Mat filter = Mat(3,3,CV_32F,media);
+  filter2D(imageB, imageB, imageB.depth(), filter, Point(1,1), 0);
+  filter2D(imageB, imageB, imageB.depth(), filter, Point(1,1), 0);
+  filter2D(imageB, imageB, imageB.depth(), filter, Point(1,1), 0);
+  namedWindow("tela", 1);
+  altura_slider_max = height;
+ // image.convertTo(image,CV_32FC3);
+ // imageB.convertTo(imageB, CV_32FC3);
+  image.copyTo(blended);
+  imshow("tela", image);
+  cout <&lt image.depth() <&lt endl;
+  
+  
+  
+  sprintf( TrackbarName, "Altura x %d", altura_slider_max );
+  createTrackbar( TrackbarName, "tela",
+				  &altura_slider,
+				  altura_slider_max,
+				  on_trackbar_height );
+  on_trackbar_height(altura_slider, 0 );
+  
+  sprintf( TrackbarName, "Decaimento x %d", decai_slider_max );
+  createTrackbar( TrackbarName, "tela",
+				  &decai_slider,
+				  decai_slider_max,
+				  on_trackbar_decaimento );
+  on_trackbar_decaimento(decai_slider, 0 );
+
+  sprintf( TrackbarName, "Posicao Vertical x %d", pos_slider_max );
+  createTrackbar( TrackbarName, "tela",
+				  &pos_slider,
+				  pos_slider_max,
+				  on_trackbar_posicao );
+  on_trackbar_posicao(pos_slider, 0 );
+
+  waitKey(0);
+  return 0;
+}
+</pre>
+</p>
+<h2>Descrição do Programa</h2>
+<p>O programa permite o controle da altura e da posiçõo vertical da região de foco e da taxa de decaimento entre uma região e outra. Primeiro, uma imagem é lida e um filtro de media é aplicado três vezes na imagem. A partir disso, a imagem borrada é misturada com a original de acordo com uma função predefinida. E através dos ajuste dos parâmetros dessa função, é possível controlar as características desejadas.</p>
+<h2>Resultados</h2>
+<figure id="original">
+   <img src="/home/igor/Documentos/PDI/Site/laplacgausso.png">
+   <figcaption>laplacgausso.png</figcaption>
+</figure>
+<figure id="resultado">
+   <img src="/home/igor/Documentos/PDI/Site/laplacgauss.png">
+   <figcaption>laplacgauss.png</figcaption>
+</figure>
+
+</body>
+</html>
