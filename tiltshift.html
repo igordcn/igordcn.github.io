@@ -39,53 +39,35 @@ double alfa;
 char TrackbarName[50];
 
 void on_trackbar_height(int, void*){
-// blended.convertTo(blended, CV_32FC3);
  altura = (double)altura_slider;
  for(int i = 0; i &lt height; i++){
    alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
-   cout << "Alfa : " <&lt alfa << " ";
    for(int j = 0; j &lt 3*width; j++){
      blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
    }
  }
- cout <&lt endl;
- cout << "Vou mostrar na tela" <&lt endl;
- //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
- //blended.convertTo(blended, CV_8UC3);
  imshow("tela", blended);
 }
 
 void on_trackbar_decaimento(int, void*){
-  // blended.convertTo(blended, CV_32FC3);
  decaimento = (double)decai_slider + 1;
  for(int i = 0; i &lt height; i++){
    alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
-   cout << "Alfa : " <&lt alfa << " ";
    for(int j = 0; j &lt 3*width; j++){
      blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
    }
  }
- cout <&lt endl;
- cout << "Vou mostrar na tela" <&lt endl;
- //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
- //blended.convertTo(blended, CV_8UC3);
  imshow("tela", blended);
 }
 
 void on_trackbar_posicao(int, void*){
-  // blended.convertTo(blended, CV_32FC3);
  posicao = (double)pos_slider - 127;
  for(int i = 0; i &lt height; i++){
    alfa = 0.5*(tanh((i-(height/2)+(altura/2)-posicao)/decaimento) - tanh((i-(height/2)-(altura/2)-posicao)/decaimento));
-   cout << "Alfa : " <&lt alfa << " ";
    for(int j = 0; j &lt 3*width; j++){
      blended.at&ltuchar>(i,j) = (uchar)((int)image.at&ltuchar>(i,j)*alfa + (int)imageB.at&ltuchar>(i,j)*(1.0-alfa));
    }
  }
- cout <&lt endl;
- cout << "Vou mostrar na tela" <&lt endl;
- //addWeighted( image, alfa, image, 1-alfa, 0.0, blended);
- //blended.convertTo(blended, CV_8UC3);
  imshow("tela", blended);
 }
 
@@ -97,7 +79,6 @@ int main(int argvc, char** argv){
   }
   height = image.size().height;
   width = image.size().width;
-  cout << "Height: " <&lt height << " e width: " <&lt width <&lt endl;
   float media[] = {1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9,1.0/9};
   image.copyTo(imageB);
   Mat filter = Mat(3,3,CV_32F,media);
@@ -106,8 +87,6 @@ int main(int argvc, char** argv){
   filter2D(imageB, imageB, imageB.depth(), filter, Point(1,1), 0);
   namedWindow("tela", 1);
   altura_slider_max = height;
- // image.convertTo(image,CV_32FC3);
- // imageB.convertTo(imageB, CV_32FC3);
   image.copyTo(blended);
   imshow("tela", image);
   cout <&lt image.depth() <&lt endl;
@@ -145,11 +124,15 @@ int main(int argvc, char** argv){
 <h2>Resultados</h2>
 <figure id="original">
    <img src="/home/igor/Documentos/PDI/Site/laplacgausso.png">
-   <figcaption>laplacgausso.png</figcaption>
+   <figcaption>pordosol.jpeg</figcaption>
+</figure>
+<figure id="original">
+   <img src="/home/igor/Documentos/PDI/Site/laplacgausso.png">
+   <figcaption>tiltshift.jpg</figcaption>
 </figure>
 <figure id="resultado">
    <img src="/home/igor/Documentos/PDI/Site/laplacgauss.png">
-   <figcaption>laplacgauss.png</figcaption>
+   <figcaption>tiltshift.jpg</figcaption>
 </figure>
 
 </body>
