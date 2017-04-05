@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Processamento Digital de Imagens</title>
+  <link rel="stylesheet" href = "igordcn.github.io/css/estilo.css">
+</head>
+<body>
+<h1>Troca de Regiões</h1>
+<h2>Descrição do Problema</h2>
+<p>A imagem de deve ser dividida quatro regiões e cada região deve ser trocada com outra que se encontra em sua diagonal. 
+</p>
+<h2>Código</h2>
+<p>
+<pre>
+#include &ltiostream>
+#include &ltopencv2/opencv.hpp>
+
+using namespace std;
+using namespace cv;
+
+int main(int argc, char** argv){
+    Mat imagem, aux;
+    int imgtx, imgty;
+
+    imagem = imread("biel.png",CV_LOAD_IMAGE_GRAYSCALE);
+    if(!imagem.data){
+        cout << "Imagem não pode ser aberta" <&lt endl;
+    }
+    imgtx = imagem.size().width;
+    imgty = imagem.size().height;
+
+    cout <&lt imgtx << " " <&lt imgty <&lt endl;    
+  
+    namedWindow("window",WINDOW_AUTOSIZE);
+    imshow("window",imagem);
+    waitKey();
+   
+    aux = Mat(imgtx/2, imgty/2, CV_8UC1);
+    imagem(Rect(0,imgty/2,imgtx/2,imgty/2));
+    imagem(Rect(0,0,imgtx/2,imgty/2)).copyTo(aux);
+    imagem(Rect(imgtx/2,imgty/2,imgtx/2,imgty/2)).copyTo(imagem(Rect(0,0,imgtx/2,imgty/2)));
+    aux.copyTo(imagem(Rect(imgtx/2,imgty/2,imgtx/2,imgty/2)));
+    imagem(Rect(imgtx/2,0,imgtx/2,imgty/2)).copyTo(aux);
+    imagem(Rect(0,imgty/2,imgtx/2,imgty/2)).copyTo(imagem(Rect(imgtx/2,0,imgtx/2,imgty/2)));
+    aux.copyTo(imagem(Rect(0,imgty/2,imgtx/2,imgty/2)));
+    
+    imshow("window", imagem);
+    waitKey();
+
+    return 0;     
+}
+</pre>
+</p>
+<h2>Descrição do Programa</h2>
+<p>O programa começa com a leitura de uma imagem predefinida em tons de cinza. São calculadas as dimensões dessa imagem e ela é apresentada na tela. Após o usuário apertar uma tecla, as regiões são trocadas e o resultado é visto. E apertando mais uma vez uma tecla, o programa encerra.</p> 
+<h2>Resultado</h2>
+<figure id="original">
+   <img src="igordcn.github.io/biel.png">
+   <figcaption>biel.png</figcaption>
+</figure>
+<figure id="resultado">
+   <img src="igordcn.github.io/trocaregioes.png.png">
+   <figcaption>trocaregioes.png</figcaption>
+</figure>
+<p>Para a obtenção da figura, foram usadas como entradas as coordenadas de dois pontos:(1,1) e (200,100).</p>
+</body>
+</html>
