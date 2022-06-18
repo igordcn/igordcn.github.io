@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Processamento Digital de Imagens</title>
+    <link rel="stylesheet" href="../../css/estilo.css">
+</head>
+
+<body>
+    <h1>Canny e a Arte do Pontilhismo</h1>
+    <h2>Descrição do Problema</h2>
+    <p> O problema consiste na utilização das bordas encontradas pelo algoritmo de Canny para o melhoramento da técnica
+        do pontilhismo.
+    </p>
+    <h2>Código</h2>
+    <script src="https://gist.github.com/igordcn/a304c1a8f8b47e15dd6adf7a8e24c3c7.js"></script>
+    <h2>Descrição do Programa</h2>
+    <p>O programa usa barras de rolagem para o usuário alterar três parâmetros: menor limiar de Canny, step e raio da
+        borda. Há três parâmetros que são modificados indiretamente pelo usuário: maior limiar de Canny, jitter e raio.
+        Os limiares de Canny são importantes na determinação dos pontos que são considerados bordas e sua modificação
+        altera diretamente na quantidade de pixels de borda encontrada. A razão entre o maior e o menor limiares é igual
+        a 3 nesse programa. A variável step determina a quantidade de pontos que aparecerá na figura e é usado para o
+        cálculo aproximado da localização de um ponto do pontilhismo. O jitter influencia diretamente no range de
+        possiveis posições que um "ponto" pode aparecer ao redor de um ponto central. O raio é o raio do círculo
+        utilizado para fazer os pontos do pontilhismo. Nesse programa, optou-se por estabelecer uma relação entre step,
+        jitter e raio. Jitter é a soma da divisão inteira de step por dois com um. E o raio é o jitter mais um.O raio da
+        borda é o raio dos pontos pontilhistas que ficarão sobre as bordas encontradas por Canny, sendo, portanto, a
+        melhoria em relação ao algoritmo do pontilhismo convencional.</p>
+    <p>Depois que o usuário determina os parâmetros através da barra de rolagem, o programa segue, basicamente, as
+        seguintes etapas: cálculo dos parâmetros de acordo com os valores de entrada da barra de rolagem; determinação
+        dos pontos centrais, onde poderá ocorrer um "ponto"; cálculo da localização do centro do "ponto", que será
+        aleatória dentro de uma pequena região; identificação das bordas por Canny; e o uso de "pontos", cujo raio é
+        igual a raio_borda sobre os pixels encontrados como borda por Canny.</p>
+    <h2>Resultados</h2>
+    <figure id="original">
+        <img src="../../resources/img/cavalos.jpg">
+        <figcaption>Imagem original-cavalos.jpg</figcaption>
+    </figure>
+    <figure id="canny">
+        <img src="../../resources/img/canny.png">
+        <figcaption>Bordas encontradas por Canny-canny.png</figcaption>
+    </figure>
+    <figure id="resultado">
+        <img src="../../resources/img/cannypoints.png">
+        <figcaption>Combinação do pontilhismo com as bordas de Canny-cannypoints.png</figcaption>
+    </figure>
+    <p>Para a obtenção do resultado acima, foram utilizados 104, 1 e 1 para menor limiar de Canny, step e raio da borda
+        respectivamente. </p>
+</body>
+
+</html>

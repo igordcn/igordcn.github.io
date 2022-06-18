@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Processamento Digital de Imagens</title>
+    <link rel="stylesheet" href="../../css/estilo.css">
+</head>
+
+<body>
+    <h1>Contagem de Bolhas</h1>
+    <h2>Descrição do Problema</h2>
+    <p>
+        O problema consiste na identificação e contagem de bolhas presentes na imagem bolhas.png.
+    </p>
+    <h2>Código</h2>
+    <script src="https://gist.github.com/igordcn/b67a38c1c4eb8a2a8e2d5f2458b77fc6.js"></script>
+    <h2>Descrição do Programa</h2>
+    <p>
+        O programa recebe como entrada o diretório de uma imagem como argumento que, no caso, é o bolhas.png. O primeiro
+        passo feito foi alterar a cor de fundo para diferenciá-la de um possível buraco. O segundo foi percorrer as
+        bordas para achar objetos que as tocassem e retirá-los da imagem. O terceiro passo foi identificar os objetos
+        internos à imagem e determinar quantos buracos eles tem. Para determinar a quantidade de buracos em um objeto,
+        optou-se por definir faixas de tons de cinza associadas a quantidade de buracos num objeto. Por exemplo, um
+        objeto que tem um buraco será pintado(utilizando o floodFill) com um tom de cinza entre 100 e 150. Dessa forma,
+        se um buraco fosse encontrado em um objeto, poderia-se determinar que aquele objeto já possuia um buraco contado
+        ou não. No passo seguinte, é feito os descontos nas variáveis que guardam as quantidades de cada tipo de objeto,
+        já que um objeto com mais de um buraco foi contabilizado mais de uma vez no processo. E por último, os resultados
+        e a imagem resultante são mostrados.
+    </p>
+    <h2>Resultados</h2>
+    <figure id="original">
+        <img src="../../resources/img/bolhas.png">
+        <figcaption>bolhas.png</figcaption>
+    </figure>
+    <figure id="resultado">
+        <img src="../../resources/img/labeling2.png">
+        <figcaption>labeling2.png</figcaption>
+    </figure>
+    <p>Segue abaixo o resultado da contagem:</p>
+    <p>Numero de total de objetos: 32</p>
+    <p>Numero de objetos nas bordas: 11</p>
+    <p>Numero de objetos sem bolhas: 14</p>
+    <p>Numero de bolhas com 1 furo: 7</p>
+    <p>Numero de bolhas com 2 furos: 0</p>
+    <p>Numero de bolhas com 3 furos: 0</p>
+    <p>Numero de bolhas com 4 furos: 0</p>
+    <p>Numero de bolhas com 5 furos: 0</p>
+</body>
+
+</html>
