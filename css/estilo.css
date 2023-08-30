@@ -3,7 +3,7 @@ body {
     margin-right: auto;
     width: 66%;
     max-width: 1500px;
-    font-family: 'Roboto Slab', serif;
+    font-family: sans-serif;
     background-color: rgba(255, 255, 255, 0.2) ;
     background-image: url('../resources/img/background.jpg');
     background-repeat: no-repeat;
@@ -41,6 +41,10 @@ h2 {
     font-weight: 500;
 }
 
+figcaption {
+    text-align: center;
+}
+
 .card-container {
     margin: 0px 30px 30px 0px;
 }
@@ -53,7 +57,7 @@ h2 {
 
 .flip-card {
     width: 250px;
-    height: 250px;
+    height: 300px;
     perspective: 1000px;
 }
 
@@ -63,6 +67,10 @@ h2 {
     height: 100%;
     transition: transform 0.8s;
     transform-style: preserve-3d;
+    border: transparent;
+    border-radius: 10px;
+    background-color: white;
+    box-shadow: 0px 8px 15px -2px rgba(0,0,0,0.7);
 }
 
 .flip-card:hover .inner {
@@ -79,9 +87,21 @@ h2 {
 
 .flip-card .front img {
     width: 100%;
-    height: 100%;
+    height: 224px;
+    border-radius: 10px 10px 0 0;
+}
+
+.flip-card .front p {
+    text-indent: 0;
+    text-align: center;
 }
 
 .flip-card .back {
     transform: rotateY(180deg);
+}
+
+.flip-card .back p {
+    text-indent: 0;
+    text-align: center;
+    padding: 20px;
 }

@@ -1,6 +1,7 @@
 class FlipCardComponent extends HTMLElement {
 
     connectedCallback() {
+        let title = this.getAttribute("title")
         let text = this.getAttribute("text")
         let image = this.getAttribute("image")
         this.innerHTML = `
@@ -9,6 +10,7 @@ class FlipCardComponent extends HTMLElement {
                 <div class="inner">
                     <div class="front">
                         <img src="${image}" />
+                        <p>${title}</p>
                     </div>
                     <div class="back">
                         <p>${text}</p>
