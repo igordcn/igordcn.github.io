@@ -8,55 +8,85 @@
 </head>
 
 <body>
-    <h1>Exercícios</h1>
-    <p>Segue abaixo, a resolução dos exercícios propostos para a disciplina de Processamento Digital de Imagens:</p>
-    <ul>
-        <li>
-            <a href="./pages/pdi/negativo.html">
-                Negativo
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/troca-de-regioes.html">
-                Troca de Regiões
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/contagem-de-bolhas.html">
-                Contagem de Bolhas
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/equalizacao.html">
-                Equalização de Histograma
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/detector-de-movimento.html">
-                Detector de Movimento
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/laplaciano-gauss.html">
-                Filtragem no Domínio Espacial-Laplaciano do Gaussiano
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/tiltshift.html">
-                Tiltshift
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/filtro-homomorfico.html">
-                Filtro Homomórfico
-            </a>
-        </li>
-        <li>
-            <a href="./pages/pdi/canny-points.html">
-                Canny e a Arte do Pontilhismo
-            </a>
-        </li>
-    </ul>
+    <main class="">
+        <h1>Processamento Digital de Imagens</h1>
+        <p>Segue abaixo, a resolução dos exercícios propostos para a disciplina de Processamento Digital de Imagens:</p>
+        <section class="cards-section">
+            <div class="card-container">
+                <a href="./pages/pdi/negativo.html">
+                    <flip-card
+                        image="./resources/img/regions.png"
+                        text="Aplica um efeito negativo numa região escolhida pelo usuário."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/troca-de-regioes.html">
+                    <flip-card
+                        image="./resources/img/trocaregioes.png"
+                        text="Divide a imagem em quatro regiões e as troca diagonalmente."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/contagem-de-bolhas.html">
+                    <flip-card
+                        image="./resources/img/bolhas.png"
+                        text="Identificação e contagem de bolhas em uma imagem."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/equalizacao.html">
+                    <flip-card
+                        image="./resources/img/equalizado.png"
+                        text="Aplicação de equalização de histograma em imagens do vídeo da webcam."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/detector-de-movimento.html">
+                    <flip-card
+                        image="./resources/img/agoraalerta.png"
+                        text="Identificação de movimento por comparação de histograma de fois quadros."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/laplaciano-gauss.html">
+                    <flip-card
+                        image="./resources/img/laplacgausso.png"
+                        text="Aplicação do filtro laplaciano do gaussiano."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/tiltshift.html">
+                    <flip-card
+                        image="./resources/img/tiltshift.jpg"
+                        text="Aplicação da técnica de tiltshift, permitindo o controle da região em foco."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/filtro-homomorfico.html">
+                    <flip-card
+                        image="./resources/img/imfiltrada.png"
+                        text="Aplicação do filtro homomórfico."
+                    ></flip-card>
+                </a>
+            </div>
+            <div class="card-container">
+                <a href="./pages/pdi/canny-points.html">
+                    <flip-card
+                        image="./resources/img/cannypoints.png"
+                        text="Aplicação do algorítmo de Canny para pontilhismo."
+                    ></flip-card>
+                </a>
+            </div>
+        </section>
+    </main>
+    <script type="text/javascript" src="./js/template.js"></script>
 </body>
 
 </html>
