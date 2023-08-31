@@ -55,6 +55,10 @@ figcaption {
     flex-wrap: wrap;
 }
 
+.img-main img {
+    width: 300px;
+}
+
 .flip-card {
     width: 250px;
     height: 300px;

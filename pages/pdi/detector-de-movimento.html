@@ -9,28 +9,41 @@
 
 <body>
     <h1>Detecção de Movimento</h1>
-    <h2>Descrição do Problema</h2>
-    <p>
-        O problema consiste na identificação de movimento através da comparação dos histogramas de dois quadros em apenas
-        um canal.
-    </p>
-    <h2>Código</h2>
-    <script src="https://gist.github.com/igordcn/7ca5acf1d41e563acb04645463b7fa46.js"></script>
-    <h2>Descrição do Programa</h2>
-    <p>
-        O programa utiliza a webcam para capturar as imagens, utilizando um objeto de VideoCapture e um laço infinito. A
-        imagem, após ser capturada, é separada em canais e o único que vai ser utilizado é o que corresponde a cor
-        vermelha. Logo depois, é calculado o histograma apenas do canal vermelho, que é comparado com o histograma da
-        imagem anterior. Um limiar foi estabelecido para determinar se o alarme vai ser ativado e ele é comparado com a
-        soma das diferenças absolutas de todos os tons. Quando o alarme é ativado, uma mensagem é apresentada no
-        display. E apenas a partir da segunda iteração a comparação é feita, já que na primeira tem-se só uma imagem.
-    </p>
-    <h2>Resultados</h2>
-    <figure id="original">
-        <img src="../../resources/img/agoraalerta.png">
-        <figcaption>agoraalerta.png</figcaption>
-    </figure>
-    <p>No canto superior esquerdo, os histogramas utilizados para o cálculo da detecção de movimento são mostrados.</p>
+    <section>
+        <div class="img-main">
+            <figure id="original">
+                <img src="../../resources/img/agoraalerta.png">
+                <figcaption>agoraalerta.png</figcaption>
+            </figure>
+        </div>
+    </section>
+    <section>
+        <h2>O Problema</h2>
+        <p>
+            O problema consiste na identificação de movimento através da comparação dos histogramas de dois quadros em apenas
+            um canal.
+        </p>
+    </section>
+    <section>
+        <h2>Funcionamento do Programa</h2>
+        <p>
+            O programa utiliza a webcam para capturar as imagens, utilizando um objeto de VideoCapture e um laço infinito. A
+            imagem, após ser capturada, é separada em canais e o único que vai ser utilizado é o que corresponde a cor
+            vermelha. Logo depois, é calculado o histograma apenas do canal vermelho, que é comparado com o histograma da
+            imagem anterior. Um limiar foi estabelecido para determinar se o alarme vai ser ativado e ele é comparado com a
+            soma das diferenças absolutas de todos os tons. Quando o alarme é ativado, uma mensagem é apresentada no
+            display. E apenas a partir da segunda iteração a comparação é feita, já que na primeira tem-se só uma imagem.
+        </p>
+    </section>
+    <section>
+        <h2>Código Fonte</h2>
+        <script src="https://gist.github.com/igordcn/7ca5acf1d41e563acb04645463b7fa46.js"></script>
+    </section>
+    <footer>
+        <a href="https://www.vecteezy.com/free-vector/technology-background">
+            Technology Background Vectors by Vecteezy
+        </a>
+    </footer>
 </body>
 
 </html>

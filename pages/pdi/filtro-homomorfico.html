@@ -9,44 +9,58 @@
 
 <body>
     <h1>Filtro Homomórfico</h1>
-    <h2>Descrição do Problema</h2>
-    <p>
-        O problema consiste na aplicação de um filtro homomórfico a uma imagem em tons de cinza com iluminação irregular.
-        Os parâmetros do filtro poderão ser modificados para alcançar um melhor resultado.
-    </p>
-    <h2>Código</h2>
-    <script src="https://gist.github.com/igordcn/eefe38c2284bf805b568cc88a1bcfd82.js"></script>
-    <h2>Descrição do Programa</h2>
-    <p>O programa recebe uma imagem em tons de cinza como entrada e logo depois, ela é mostrada na tela. Após o usuário
-        apertar uma tecla, começa-se a preparação para a aplicação do filtro, obtendo-se, primeiramente, as dimensões
-        ótimas pra dft. A primeira operação que é feita na imagem é o padding que adequará as dimensões da imagem para a
-        aplicação da dft. Após isso, é somado o valor 1 para todos os pixels para poder aplicar a função logarítmica
-        natural. Após aplicar a função logarítmica, realiza-se a dft. Realiza-se uma troca de regiões no domínio da
-        frequência logo em seguida para facilitar a aplicação do filtro, deixando as regiões de baixa frequência no
-        centro. A matriz resultante dessa última operação ficará guardada no objeto complexImage e assim, quando o
-        usuário fizer alterações nos parâmetros do filtro através de barras de rolagem, não será necessário refazer
-        todas as operações anteriores. O usuário poderá modificar, através da barra de rolagem, quatro parâmetros. São
-        eles:
-        yh(ganho das regiões superiores a frequência de corte), yl(ganho das regiões inferiores a frequência de corte),
-        d0(frequência de corte) e c(constante que multiplica o expoente da função exponencial e que influencia na região
-        de transição). Após a aplicação do filtro com os parâmetros desejados, um nova troca de regiões será realizada e
-        a dft inversa será aplicada. Será pego só a parte real do resultado. Depois, será aplicada uma função
-        exponencial e o resultado obtido será normalizado para sua exibição na tela. E quando o usuário apertar uma
-        tecla, novamente, o programa será encerrado.</p>
-    <h2>Resultados</h2>
-    <figure id="original">
-        <img src="../../resources/img/biel3.png">
-        <figcaption>Imagem original-biel3.png</figcaption>
-    </figure>
-    <figure id="filtro">
-        <img src="../../resources/img/filtro.png">
-        <figcaption>Filtro homomórfico-filtro.png</figcaption>
-    </figure>
-    <figure id="resultado">
-        <img src="../../resources/img/imfiltrada.png">
-        <figcaption>Imagem filtrada-imfiltrada.png</figcaption>
-    </figure>
-    <p>Para a obtenção desse resultado, foram utilizados 75, 7, 69 e 87 para yh, yl, c e d0 respectivamente. </p>
+    <section>
+        <div class="img-main">
+            <figure id="original">
+                <img src="../../resources/img/biel3.png">
+                <figcaption>Imagem original-biel3.png</figcaption>
+            </figure>
+            <figure id="filtro">
+                <img src="../../resources/img/filtro.png">
+                <figcaption>Filtro homomórfico-filtro.png</figcaption>
+            </figure>
+            <figure id="resultado">
+                <img src="../../resources/img/imfiltrada.png">
+                <figcaption>Imagem filtrada-imfiltrada.png</figcaption>
+            </figure>
+        </div>
+    </section>
+    <section>
+        <h2>O Problema</h2>
+        <p>
+            O problema consiste na aplicação de um filtro homomórfico a uma imagem em tons de cinza com iluminação irregular.
+            Os parâmetros do filtro poderão ser modificados para alcançar um melhor resultado.
+        </p>
+    </section>
+    <section>
+        <h2>Funcionamento do Programa</h2>
+        <p>O programa recebe uma imagem em tons de cinza como entrada e logo depois, ela é mostrada na tela. Após o usuário
+            apertar uma tecla, começa-se a preparação para a aplicação do filtro, obtendo-se, primeiramente, as dimensões
+            ótimas pra dft. A primeira operação que é feita na imagem é o padding que adequará as dimensões da imagem para a
+            aplicação da dft. Após isso, é somado o valor 1 para todos os pixels para poder aplicar a função logarítmica
+            natural. Após aplicar a função logarítmica, realiza-se a dft. Realiza-se uma troca de regiões no domínio da
+            frequência logo em seguida para facilitar a aplicação do filtro, deixando as regiões de baixa frequência no
+            centro. A matriz resultante dessa última operação ficará guardada no objeto complexImage e assim, quando o
+            usuário fizer alterações nos parâmetros do filtro através de barras de rolagem, não será necessário refazer
+            todas as operações anteriores. O usuário poderá modificar, através da barra de rolagem, quatro parâmetros. São
+            eles:
+            yh(ganho das regiões superiores a frequência de corte), yl(ganho das regiões inferiores a frequência de corte),
+            d0(frequência de corte) e c(constante que multiplica o expoente da função exponencial e que influencia na região
+            de transição). Após a aplicação do filtro com os parâmetros desejados, um nova troca de regiões será realizada e
+            a dft inversa será aplicada. Será pego só a parte real do resultado. Depois, será aplicada uma função
+            exponencial e o resultado obtido será normalizado para sua exibição na tela. E quando o usuário apertar uma
+            tecla, novamente, o programa será encerrado.</p>
+            <p>Para a obtenção da imagem acima, foram utilizados 75, 7, 69 e 87 para yh, yl, c e d0 respectivamente. </p>
+    </section>
+    <section>
+        <h2>Código Fonte</h2>
+        <script src="https://gist.github.com/igordcn/eefe38c2284bf805b568cc88a1bcfd82.js"></script>
+    </section>
+    <footer>
+        <a href="https://www.vecteezy.com/free-vector/technology-background">
+            Technology Background Vectors by Vecteezy
+        </a>
+    </footer>
 </body>
 
 </html>
